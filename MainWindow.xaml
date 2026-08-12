@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TabSplit"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Tab Split" Height="450" Width="800">
     <Grid>
-
+        <Frame Name="MainFrame" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" NavigationUIVisibility="Hidden"></Frame>
     </Grid>
 </Window>
