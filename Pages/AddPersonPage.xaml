@@ -11,22 +11,45 @@
 
     <Grid>
         <StackPanel>
-            <TextBox Text="Person Name" Foreground="White" Background="Gray" FontSize="20" ></TextBox>
-            <TextBox Text="Contact Information" Foreground="White" FontSize="20" Background="Gray"></TextBox>
-            
-            <ListBox>
+            <TextBox Name="PersonNameTextBox" Text="Person Name" Foreground="White" Background="Gray" FontSize="20" TextChanged="PersonNameTextBox_TextChanged"></TextBox>
+            <TextBox Name="ContactTextBox" Text="Contact Information" Foreground="White" FontSize="20" Background="Gray" TextChanged="ContactTextBox_TextChanged"></TextBox>
+
+            <Grid Margin="10, 5, 0, 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Content="Item Name" Grid.Column="0" Foreground="White"></Label>
+                <Label Content="Item Price" Grid.Column="1" Foreground="White"></Label>
+                <Label Content="Item Quantity" Grid.Column="3" Foreground="White"></Label>
+            </Grid>
+
+            <ListBox Margin="0" Height="300" Name="ItemListBox" Background="White">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="5" VerticalAlignment="Center">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"/>
                                 <ColumnDefinition Width="100"/>
-                                
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="100"/>
                             </Grid.ColumnDefinitions>
+
+                            <TextBox Name="ItemNameTextBox" TextChanged="ItemNameTextBox_TextChanged" Text="{Binding name}" Foreground="Black" Grid.Column="0" VerticalAlignment="Center" Margin="5"></TextBox>
+                            <TextBox Name="ItemPriceTextBox" TextChanged="ItemPriceTextBox_TextChanged" Text="{Binding price}" Foreground="Black" Grid.Column="1" VerticalAlignment="Center" Margin="5"></TextBox>
+                            <TextBox Name="ItemQuantityTextBox" TextChanged="ItemQuantityTextBox_TextChanged" Text="{Binding quantity}" Foreground="Black" Grid.Column="2" VerticalAlignment="Center" Margin="5"></TextBox>
+                            <Button Name="DeleteButton" Content="X" Click="DeleteButton_Click" Foreground="Red" Grid.Column="3"></Button>
                         </Grid>
+
+                       
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+
+            <Button Margin="0,5,0,0" Name="AddItemButton" Content="Add Item" Background="LightGreen" Click="AddItemButton_Click"></Button>
+            <Button Margin="0,5,0,0" Name="ExitButton" Content="Finish" Background="PaleVioletRed" Click="ExitButton_Click"></Button>
         </StackPanel>
     </Grid>
 </Page>

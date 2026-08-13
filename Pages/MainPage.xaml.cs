@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Controls;
+using System.Windows.Media;
 using TabSplit.Classes;
 
 namespace TabSplit
@@ -10,17 +11,59 @@ namespace TabSplit
     public partial class MainPage : Page
     {
         public ObservableCollection<Person> personList { get; set; } = new ObservableCollection<Person>();
+        private float tipPercent;
+        private float taxPercent;
 
         public MainPage()
         {
             InitializeComponent();
+            ItemListBox.ItemsSource = personList;
         }
 
-        private void MenuItem_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void TipPrecentTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Person person = new Person("N/A");
-            NavigationService.Navigate(new AddPersonPage(person));
-            personList.Add(person);
+            VerifyInput checker = new VerifyInput();
+
+            if (checker.CheckIfParseToNumber(TipPrecentTextBox.Text))
+            {
+                TipPrecentTextBox.Background = Brushes.White;
+                tipPercent = float.Parse(TipPrecentTextBox.Text);
+            }
+            else
+            {
+                TipPrecentTextBox.Background = Brushes.Red;
+            }
+
+        }
+
+        private void TaxPercentTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            VerifyInput checker = new VerifyInput();
+
+            if (checker.CheckIfParseToNumber(TaxPercentTextBox.Text))
+            {
+                TaxPercentTextBox.Background = Brushes.White;
+                taxPercent = float.Parse(TaxPercentTextBox.Text);
+
+                //TODO: Update prices when tip is changed
+            }
+            else
+            {
+                TaxPercentTextBox.Background = Brushes.Red;
+            }
+        }
+
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            VerifyInput checker = new VerifyInput();
+
+            if (checker.CheckIfParseToNumber(TaxPercentTextBox.Text) && checker.CheckIfParseToNumber(TipPrecentTextBox.Text))
+            {
+                Person person = new Person("Name Here");
+                NavigationService.Navigate(new AddPersonPage(person, personList, tipPercent, taxPercent));
+
+                //TODO: Update prices when tax is changed
+            }
         }
     }
 }
