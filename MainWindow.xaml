@@ -4,8 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TabSplit"
+        
+        xmlns:converters = "clr-namespace:TabSplit.Classes"
+        
         mc:Ignorable="d"
         Title="Tab Split" Height="450" Width="800">
+
+        <Window.Resources>
+            <converters:FractionToFloatConverter x:Key = "FractionToFloatConverter"/>
+        </Window.Resources>
+
     <Grid>
         <Frame Name="MainFrame" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" NavigationUIVisibility="Hidden"></Frame>
     </Grid>

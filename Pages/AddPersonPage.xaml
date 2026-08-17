@@ -4,10 +4,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TabSplit"
+      xmlns:converters = "clr-namespace:TabSplit.Classes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Background="Gray"
       Title="Add Person">
+
+    <Page.Resources>
+        <converters:FractionToFloatConverter x:Key = "FractionToFloatConverter"/>
+    </Page.Resources>
 
     <Grid>
         <StackPanel>
@@ -38,8 +43,8 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBox x:Name="ItemNameTextBox" TextChanged="ItemNameTextBox_TextChanged" Text="{Binding name}" Foreground="Black" Grid.Column="0" VerticalAlignment="Center" Margin="5"></TextBox>
-                            <TextBox Name="ItemPriceTextBox" PreviewTextInput="ItemPriceTextBox_PreviewTextInput" Background="Red" TextChanged="ItemPriceTextBox_TextChanged" Text="{Binding price}" Foreground="Black" Grid.Column="1" VerticalAlignment="Center" Margin="5"></TextBox>
-                            <TextBox Name="ItemQuantityTextBox" PreviewTextInput="ItemQuantityTextBox_PreviewTextInput" Background="Red" TextChanged="ItemQuantityTextBox_TextChanged" Text="{Binding quantity}" Foreground="Black" Grid.Column="2" VerticalAlignment="Center" Margin="5"></TextBox>
+                            <TextBox Name="ItemPriceTextBox" PreviewTextInput="ItemPriceTextBox_PreviewTextInput" Background="Red" TextChanged="ItemPriceTextBox_TextChanged" Text="{Binding price, Converter = {StaticResource FractionToFloatConverter}}" Foreground="Black" Grid.Column="1" VerticalAlignment="Center" Margin="5"></TextBox>
+                            <TextBox Name="ItemQuantityTextBox" PreviewTextInput="ItemQuantityTextBox_PreviewTextInput" Background="Red" TextChanged="ItemQuantityTextBox_TextChanged" Text="{Binding quantity, Converter = {StaticResource FractionToFloatConverter}}" Foreground="Black" Grid.Column="2" VerticalAlignment="Center" Margin="5"></TextBox>
                             <Button Name="DeleteButton" Content="X" Click="DeleteButton_Click" Foreground="Red" Grid.Column="3"></Button>
                         </Grid>
 
