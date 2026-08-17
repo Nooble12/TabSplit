@@ -38,7 +38,7 @@ namespace TabSplit
 
         private void AddItemButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            Item item = new Item("Enter Name", 0, 0);
+            Item item = new Item("Enter Name", 0, 1);
             itemList.Add(item);
             person.AddItemToInventory(item);
 
@@ -103,37 +103,6 @@ namespace TabSplit
                     nameTextBox.Background = Brushes.Red;
                 }
            }
-        }
-
-        private void ItemPriceTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (sender is TextBox itemPriceTextBox)
-            {
-                if (checker.CheckIfParseToNumber(itemPriceTextBox.Text))
-                {
-                    itemPriceTextBox.Background = Brushes.White;
-                }
-                else
-                {
-                    itemPriceTextBox.Background = Brushes.Red;
-                    
-                }
-            }
-        }
-
-        private void ItemQuantityTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (sender is TextBox itemQuantity)
-            {
-                if (checker.CheckIfParseToNumber(itemQuantity.Text))
-                {
-                    itemQuantity.Background = Brushes.White;
-                }
-                else
-                {
-                    itemQuantity.Background = Brushes.Red;
-                }
-            }
         }
 
         private void ItemPriceTextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
