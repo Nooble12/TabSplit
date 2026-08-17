@@ -7,6 +7,7 @@ namespace TabSplit.Classes
         private int _quantity;
         private float _price;
         private string _name;
+        VerifyInput checker = new VerifyInput();
 
         public int quantity
         {
@@ -15,7 +16,13 @@ namespace TabSplit.Classes
             {
                 if (_quantity != value)
                 {
-                    _quantity = value;
+                    if (checker.CheckIfNumber(value))
+                    {
+                        if (value > 0)
+                        {
+                            _quantity = value;
+                        }
+                    }
                 }
                 OnPropertyChanged(nameof(_quantity));
             }
@@ -28,7 +35,13 @@ namespace TabSplit.Classes
             {
                 if (_price != value)
                 {
-                    _price = value;
+                    if (checker.CheckIfNumber(value))
+                    {
+                        if (value > 0)
+                        {
+                            _price = value;
+                        }
+                    }
                 }
                 OnPropertyChanged(nameof(_price));
             }
@@ -41,8 +54,13 @@ namespace TabSplit.Classes
             {
                 if (_name != value)
                 {
-                    _name = value;
-                    Console.Write("Name has changed");
+                    if (checker.CheckInputStringLength(value))
+                    {
+                        _name = value;
+                        Console.Write("Name has changed");
+                      
+                    }
+
                 }
                 OnPropertyChanged(nameof(_name));
             }
@@ -58,5 +76,7 @@ namespace TabSplit.Classes
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        // TODO VERIFY QUANTITY, PRICE, NAME methods. Will be Used in AddPersonPage and Person.cs to verify states
     }
 }
