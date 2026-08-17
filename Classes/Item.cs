@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Diagnostics;
 
 namespace TabSplit.Classes
 {
@@ -57,8 +58,6 @@ namespace TabSplit.Classes
                     if (checker.CheckInputStringLength(value))
                     {
                         _name = value;
-                        Console.Write("Name has changed");
-                      
                     }
 
                 }

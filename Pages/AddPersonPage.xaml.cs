@@ -1,6 +1,8 @@
 ﻿using System.Collections.ObjectModel;
+using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows;
 using TabSplit.Classes;
 
 namespace TabSplit
@@ -13,6 +15,7 @@ namespace TabSplit
         private ObservableCollection<Item> itemList { get; set; } = new ObservableCollection<Item>();
 
         private VerifyInput checker = new VerifyInput();
+        private static readonly Regex _inputRegex = new Regex("^[0-9.\b]+$");
 
         private ObservableCollection<Person> personList;
         private Person person;
@@ -29,6 +32,8 @@ namespace TabSplit
 
             InitializeComponent();
             ItemListBox.ItemsSource = itemList;
+
+            ExitButton.Visibility = Visibility.Hidden;
         }
 
         private void AddItemButton_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -36,16 +41,16 @@ namespace TabSplit
             Item item = new Item("Enter Name", 0, 0);
             itemList.Add(item);
             person.AddItemToInventory(item);
+
+            ExitButton.Visibility = Visibility.Visible;
         }
 
         private void ExitButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
             if (person.VerifyInventory())
             {
                 person.CalculatePrice(tipPercent, taxPercent);
                 personList.Add(person);
-
                 this.NavigationService.GoBack();
             }
             else
@@ -74,6 +79,12 @@ namespace TabSplit
                     case Item item:
                         itemList.Remove(item);
                         person.RemoveItemFromInventory(item);
+
+                        if (itemList.Count <= 0)
+                        {
+                            ExitButton.Visibility = Visibility.Hidden;
+                        }
+
                         break;
                 }
             }
@@ -122,6 +133,30 @@ namespace TabSplit
                 {
                     itemQuantity.Background = Brushes.Red;
                 }
+            }
+        }
+
+        private void ItemPriceTextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            if (_inputRegex.IsMatch(e.Text))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void ItemQuantityTextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            if (_inputRegex.IsMatch(e.Text))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
             }
         }
     }
