@@ -15,7 +15,7 @@ namespace TabSplit
         private ObservableCollection<Item> itemList { get; set; } = new ObservableCollection<Item>();
 
         private VerifyInput checker = new VerifyInput();
-        private static readonly Regex _inputRegex = new Regex("^[0-9.\b]+$");
+        private static readonly Regex _inputRegex = new Regex("^[0-9.\b]+$"); // WIP new Regex("^[0-9./\b]+$"); for fractions and decimals
 
         private ObservableCollection<Person> personList;
         private Person person;
@@ -125,7 +125,7 @@ namespace TabSplit
         {
             if (sender is TextBox itemQuantity)
             {
-                if (checker.CheckIfParseToInt(itemQuantity.Text))
+                if (checker.CheckIfParseToNumber(itemQuantity.Text))
                 {
                     itemQuantity.Background = Brushes.White;
                 }

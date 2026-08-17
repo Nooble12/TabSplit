@@ -5,12 +5,12 @@ namespace TabSplit.Classes
 {
     public class Item : INotifyPropertyChanged
     {
-        private int _quantity;
+        private float _quantity;
         private float _price;
         private string _name;
         VerifyInput checker = new VerifyInput();
 
-        public int quantity
+        public float quantity
         {
             get => _quantity;
             set

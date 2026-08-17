@@ -27,7 +27,7 @@ namespace TabSplit
             if (checker.CheckIfParseToNumber(TipPrecentTextBox.Text))
             {
                 TipPrecentTextBox.Background = Brushes.White;
-                tipPercent = float.Parse(TipPrecentTextBox.Text);
+                tipPercent = checker.number;
             }
             else
             {
@@ -43,7 +43,7 @@ namespace TabSplit
             if (checker.CheckIfParseToNumber(TaxPercentTextBox.Text))
             {
                 TaxPercentTextBox.Background = Brushes.White;
-                taxPercent = float.Parse(TaxPercentTextBox.Text);
+                taxPercent = checker.number;
 
                 //TODO: Update prices when tip is changed
             }
