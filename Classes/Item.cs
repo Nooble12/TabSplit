@@ -25,7 +25,7 @@ namespace TabSplit.Classes
                         }
                     }
                 }
-                OnPropertyChanged(nameof(_quantity));
+                OnPropertyChanged(nameof(quantity));
             }
         }
 
@@ -44,7 +44,7 @@ namespace TabSplit.Classes
                         }
                     }
                 }
-                OnPropertyChanged(nameof(_price));
+                OnPropertyChanged(nameof(price));
             }
         }
 
@@ -61,15 +61,15 @@ namespace TabSplit.Classes
                     }
 
                 }
-                OnPropertyChanged(nameof(_name));
+                OnPropertyChanged(nameof(name));
             }
         }
 
         public Item(string inName, float inPrice, int inQuantity)
         {
-            _name = inName;
-            _price = inPrice;
-            _quantity = inQuantity;
+            name = inName;
+            price = inPrice;
+            quantity = inQuantity;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows;
 using TabSplit.Classes;
+using System.Diagnostics;
 
 namespace TabSplit
 {
@@ -21,7 +22,8 @@ namespace TabSplit
         private Person person;
         private float tipPercent;
         private float taxPercent;
-        public AddPersonPage(Person inPerson, ObservableCollection<Person> inPersonList, float inTipPercent, float inTaxPercent)
+        private bool isEditMode = false;
+        public AddPersonPage(Person inPerson, ObservableCollection<Person> inPersonList, float inTipPercent, float inTaxPercent, bool editModeSelect)
         {
 
             person = inPerson;
@@ -30,10 +32,26 @@ namespace TabSplit
             tipPercent = inTipPercent;
             taxPercent = inTaxPercent;
 
+            isEditMode = editModeSelect;
+
+            this.DataContext = person;
+
             InitializeComponent();
-            ItemListBox.ItemsSource = itemList;
 
             ExitButton.Visibility = Visibility.Hidden;
+
+            // Handles when user is editing a person rather than creating a new.
+            if (isEditMode)
+            {
+                foreach (Item item in person.inventory)
+                {
+                    itemList.Add(item);
+                }
+                ExitButton.Visibility = Visibility.Visible;
+            }
+
+            ItemListBox.ItemsSource = itemList;
+
         }
 
         private void AddItemButton_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -50,7 +68,12 @@ namespace TabSplit
             if (person.VerifyInventory())
             {
                 person.CalculatePrice(tipPercent, taxPercent);
-                personList.Add(person);
+
+                if (isEditMode == false)
+                {
+                    personList.Add(person);
+                }
+
                 this.NavigationService.GoBack();
             }
             else

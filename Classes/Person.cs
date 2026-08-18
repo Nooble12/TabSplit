@@ -20,8 +20,8 @@ namespace TabSplit.Classes
                 if (_name != value)
                 {
                     _name = value;
+                    OnPropertyChanged(nameof(name));
                 }
-                OnPropertyChanged(nameof(_name));
             }
         }
 
@@ -33,8 +33,8 @@ namespace TabSplit.Classes
                 if (_contactInfo != value)
                 {
                     _contactInfo = value;
+                    OnPropertyChanged(nameof(contactInfo));
                 }
-                OnPropertyChanged(nameof(_contactInfo));
             }
         }
         public float totalBasePrice
@@ -45,8 +45,8 @@ namespace TabSplit.Classes
                 if (_totalBasePrice != value)
                 {
                     _totalBasePrice = value;
+                    OnPropertyChanged(nameof(totalBasePrice));
                 }
-                OnPropertyChanged(nameof(_totalBasePrice));
             }
         }
 
@@ -58,16 +58,17 @@ namespace TabSplit.Classes
                 if (_totalPrice != value)
                 {
                     _totalPrice = value;
+                    OnPropertyChanged(nameof(totalPrice));
                 }
-                OnPropertyChanged(nameof(_totalPrice));
             }
         }
 
         public List<Item> inventory = new List<Item>();
 
-        public Person(string inName)
+        public Person(string inName, string inContactInfo)
         {
             _name = inName;
+            _contactInfo = inContactInfo;
         }
 
         public void AddItemToInventory(Item inItem)
@@ -104,8 +105,8 @@ namespace TabSplit.Classes
         public void CalculatePrice(float tipPercent, float taxPercent)
         {
             CalculateTotalPrice price = new CalculateTotalPrice();
-            _totalPrice = price.GetTotalPrice(inventory, tipPercent, taxPercent);
-            _totalBasePrice = price.GetTotalBasePrice(inventory);
+            totalPrice = price.GetTotalPrice(inventory, tipPercent, taxPercent);
+            totalBasePrice = price.GetTotalBasePrice(inventory);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -28,11 +28,13 @@
                                 <ColumnDefinition Width="150"/>
                                 <ColumnDefinition Width="100"/>
                                 <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="100"/>
                             </Grid.ColumnDefinitions>
 
                             <Label Content="{Binding name}" Foreground="Black" Grid.Column="0" VerticalAlignment="Center" Margin="5"></Label>
                             <Label Content="{Binding totalBasePrice}" Foreground="Black" Grid.Column="1" VerticalAlignment="Center" Margin="5"></Label>
                             <Label Content="{Binding totalPrice}" Foreground="Black" Grid.Column="2" VerticalAlignment="Center" Margin="5"></Label>
+                            <Button Content="Edit" Foreground="Black" Click="EditButton_Click" Grid.Column="3" Margin="5"></Button>
                         </Grid>
                         
                     </DataTemplate>

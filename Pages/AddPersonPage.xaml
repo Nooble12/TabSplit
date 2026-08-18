@@ -16,8 +16,8 @@
 
     <Grid>
         <StackPanel>
-            <TextBox Name="PersonNameTextBox" Text="Person Name" Foreground="White" Background="Gray" FontSize="20" TextChanged="PersonNameTextBox_TextChanged"></TextBox>
-            <TextBox Name="ContactTextBox" Text="Contact Information" Foreground="White" FontSize="20" Background="Gray" TextChanged="ContactTextBox_TextChanged"></TextBox>
+            <TextBox Name="PersonNameTextBox" Text="{Binding name}" Foreground="White" Background="Gray" FontSize="20" TextChanged="PersonNameTextBox_TextChanged"></TextBox>
+            <TextBox Name="ContactTextBox" Text="{Binding contactInfo}" Foreground="White" FontSize="20" Background="Gray" TextChanged="ContactTextBox_TextChanged"></TextBox>
 
             <Grid Margin="10, 5, 0, 0">
                 <Grid.ColumnDefinitions>

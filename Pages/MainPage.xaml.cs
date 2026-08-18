@@ -59,10 +59,25 @@ namespace TabSplit
 
             if (checker.CheckIfParseToNumber(TaxPercentTextBox.Text) && checker.CheckIfParseToNumber(TipPrecentTextBox.Text))
             {
-                Person person = new Person("Name Here");
-                NavigationService.Navigate(new AddPersonPage(person, personList, tipPercent, taxPercent));
+                Person person = new Person("Name Here", "Contact Info");
+                NavigationService.Navigate(new AddPersonPage(person, personList, tipPercent, taxPercent, false));
 
                 //TODO: Update prices when tax is changed
+            }
+        }
+
+        private void EditButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (sender is Button editButton)
+            {
+                var instance = editButton.DataContext;
+                if (instance is Person person)
+                {
+                    NavigationService.Navigate(new AddPersonPage(person, personList, tipPercent, taxPercent, true));
+
+                    //personList.Remove(person);
+                   // personList.Add(person);
+                }
             }
         }
     }
