@@ -80,5 +80,18 @@ namespace TabSplit
                 }
             }
         }
+
+        private void DeleteButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (sender is Button editButton)
+            {
+                var instance = editButton.DataContext;
+
+                if (instance is Person person)
+                {
+                    personList.Remove(person);
+                }
+            }
+        }
     }
 }
