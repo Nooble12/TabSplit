@@ -28,6 +28,8 @@ namespace TabSplit
             {
                 TipPrecentTextBox.Background = Brushes.White;
                 tipPercent = checker.number;
+
+                UpdateAllPersons();
             }
             else
             {
@@ -45,7 +47,7 @@ namespace TabSplit
                 TaxPercentTextBox.Background = Brushes.White;
                 taxPercent = checker.number;
 
-                //TODO: Update prices when tip is changed
+                UpdateAllPersons();
             }
             else
             {
@@ -91,6 +93,15 @@ namespace TabSplit
                 {
                     personList.Remove(person);
                 }
+            }
+        }
+
+        // Recalculates the tip and tax when the value is changed during runtime.
+        private void UpdateAllPersons()
+        {
+            foreach (Person person in personList)
+            {
+                person.CalculatePrice(tipPercent, taxPercent); 
             }
         }
     }
