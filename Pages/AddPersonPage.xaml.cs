@@ -1,10 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows;
 using TabSplit.Classes;
-using System.Diagnostics;
 
 namespace TabSplit
 {

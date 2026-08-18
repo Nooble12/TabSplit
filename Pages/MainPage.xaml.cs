@@ -2,6 +2,8 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 using TabSplit.Classes;
+using System.Windows;
+using TabSplit.Pages;
 
 namespace TabSplit
 {
@@ -18,6 +20,7 @@ namespace TabSplit
         {
             InitializeComponent();
             ItemListBox.ItemsSource = personList;
+            GenerateReportButton.Visibility = Visibility.Hidden;
         }
 
         private void TipPrecentTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -64,7 +67,7 @@ namespace TabSplit
                 Person person = new Person("Name Here", "Contact Info");
                 NavigationService.Navigate(new AddPersonPage(person, personList, tipPercent, taxPercent, false));
 
-                //TODO: Update prices when tax is changed
+                GenerateReportButton.Visibility = Visibility.Visible;
             }
         }
 
@@ -92,6 +95,11 @@ namespace TabSplit
                 if (instance is Person person)
                 {
                     personList.Remove(person);
+
+                    if (personList.Count == 0)
+                    {
+                        GenerateReportButton.Visibility = Visibility.Hidden;
+                    }
                 }
             }
         }
@@ -103,6 +111,13 @@ namespace TabSplit
             {
                 person.CalculatePrice(tipPercent, taxPercent); 
             }
+        }
+
+        private void GenerateReportButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            GenerateReport generator = new GenerateReport(personList, taxPercent, tipPercent);
+            string reportString = generator.CreateReport();
+            NavigationService.Navigate(new ReportPage(reportString));
         }
     }
 }

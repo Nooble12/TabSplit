@@ -38,11 +38,12 @@
                             <Button Content="Edit" Foreground="Black" Click="EditButton_Click" Grid.Column="3" Margin="5"></Button>
                             <Button Content="X" Foreground="Red" Click="DeleteButton_Click" Grid.Column="4" Margin="5"></Button>
                         </Grid>
-                        
+
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
 
+            <Button Name="GenerateReportButton" Content="Generate Report" Background="LightGreen" Click="GenerateReportButton_Click"></Button>
         </StackPanel>
     </Grid>
 </Page>
