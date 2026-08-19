@@ -25,21 +25,34 @@
             <TextBox Name="TipPrecentTextBox" Text="Tip Percent" TextChanged="TipPrecentTextBox_TextChanged"></TextBox>
             <Button Content="Add Person" Background="LightGreen" Click="Button_Click"></Button>
 
-            <ListBox Margin="0, 5, 0, 0" Height="300" Name="ItemListBox" Background="White">
+            <Grid Margin="10,0,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Content="Name" Grid.Column="0" Foreground="White"></Label>
+                <Label Content="Base Price" Grid.Column="1" Foreground="White"></Label>
+                <Label Content="Total Price" Grid.Column="2" Foreground="White"></Label>
+
+            </Grid>
+
+            <ListBox Margin="0, 5, 0, 0" Height="250" Name="ItemListBox" Background="White">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="5" VerticalAlignment="Center">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="150"/>
-                                <ColumnDefinition Width="100"/>
-                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="150"/>
                                 <ColumnDefinition Width="100"/>
                                 <ColumnDefinition Width="100"/>
                             </Grid.ColumnDefinitions>
 
                             <Label Content="{Binding name}" Foreground="Black" Grid.Column="0" VerticalAlignment="Center" Margin="5"></Label>
-                            <Label Content="{Binding totalBasePrice}" Foreground="Black" Grid.Column="1" VerticalAlignment="Center" Margin="5"></Label>
-                            <Label Content="{Binding totalPrice}" Foreground="Black" Grid.Column="2" VerticalAlignment="Center" Margin="5"></Label>
+                            <Label Content="{Binding totalBasePrice}" ContentStringFormat="${0}" Foreground="Black" Grid.Column="1" VerticalAlignment="Center" Margin="5"></Label>
+                            <Label Content="{Binding totalPrice}" ContentStringFormat="${0}" Foreground="Black" Grid.Column="2" VerticalAlignment="Center" Margin="5"></Label>
                             <Button Content="Edit" Foreground="Black" Click="EditButton_Click" Grid.Column="3" Margin="5"></Button>
                             <Button Content="X" Foreground="Red" Click="DeleteButton_Click" Grid.Column="4" Margin="5"></Button>
                         </Grid>
