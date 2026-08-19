@@ -41,8 +41,8 @@ namespace TabSplit.Classes
                 foreach (Item item in person.inventory)
                 {
                     builder.AppendLine($"{item.name}: ${item.price} ({item.quantity}) = ${(item.price * item.quantity):F2}");
-                    individualTaxCost += item.price * (taxPerent / 100);
-                    individualTipCost += item.price * (tipPerecnt / 100);
+                    individualTaxCost += (item.price * item.quantity) * (taxPerent / 100);
+                    individualTipCost += (item.price * item.quantity) * (tipPerecnt / 100);
                 }
 
                 totalTax += individualTaxCost;
