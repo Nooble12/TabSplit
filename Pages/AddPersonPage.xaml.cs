@@ -21,8 +21,9 @@ namespace TabSplit
         private Person person;
         private float tipPercent;
         private float taxPercent;
+        private float serviceFeePercent;
         private bool isEditMode = false;
-        public AddPersonPage(Person inPerson, ObservableCollection<Person> inPersonList, float inTipPercent, float inTaxPercent, bool editModeSelect)
+        public AddPersonPage(Person inPerson, ObservableCollection<Person> inPersonList, float inTipPercent, float inTaxPercent, float inServiceFeePercent, bool editModeSelect)
         {
 
             person = inPerson;
@@ -30,6 +31,7 @@ namespace TabSplit
 
             tipPercent = inTipPercent;
             taxPercent = inTaxPercent;
+            serviceFeePercent = inServiceFeePercent;
 
             isEditMode = editModeSelect;
 
@@ -66,7 +68,7 @@ namespace TabSplit
         {
             if (person.VerifyInventory())
             {
-                person.CalculatePrice(tipPercent, taxPercent);
+                person.CalculatePrice(tipPercent, taxPercent, serviceFeePercent);
 
                 if (isEditMode == false)
                 {

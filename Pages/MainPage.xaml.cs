@@ -1,10 +1,9 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using TabSplit.Classes;
-using System.Windows;
 using TabSplit.Pages;
-using System.Diagnostics;
 using TabSplit.Windows;
 
 namespace TabSplit
@@ -17,6 +16,7 @@ namespace TabSplit
         public ObservableCollection<Person> personList { get; set; } = new ObservableCollection<Person>();
         private float tipPercent;
         private float taxPercent;
+        private float serviceFeePercent;
 
         public MainPage()
         {
@@ -27,36 +27,34 @@ namespace TabSplit
 
         private void TipPrecentTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            VerifyInput checker = new VerifyInput();
-
-            if (checker.CheckIfParseToNumber(TipPrecentTextBox.Text))
-            {
-                TipPrecentTextBox.Background = Brushes.White;
-                tipPercent = checker.number;
-
-                UpdateAllPersons();
-            }
-            else
-            {
-                TipPrecentTextBox.Background = Brushes.Red;
-            }
-
+            tipPercent = HandleTextInput(TipPrecentTextBox);
+            UpdateAllPersons();
         }
 
         private void TaxPercentTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            taxPercent = HandleTextInput(TaxPercentTextBox);
+            UpdateAllPersons();
+        }
+        private void ServiceFeePercentTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            serviceFeePercent = HandleTextInput(ServiceFeePercentTextBox);
+            UpdateAllPersons();
+        }
+
+        private float HandleTextInput(TextBox inTextBox)
+        {
             VerifyInput checker = new VerifyInput();
 
-            if (checker.CheckIfParseToNumber(TaxPercentTextBox.Text))
+            if (checker.CheckIfParseToNumber(inTextBox.Text))
             {
-                TaxPercentTextBox.Background = Brushes.White;
-                taxPercent = checker.number;
-
-                UpdateAllPersons();
+                inTextBox.Background = Brushes.White;
+                return checker.number;
             }
             else
             {
-                TaxPercentTextBox.Background = Brushes.Red;
+                inTextBox.Background = Brushes.Red;
+                return 0;
             }
         }
 
@@ -64,10 +62,12 @@ namespace TabSplit
         {
             VerifyInput checker = new VerifyInput();
 
-            if (checker.CheckIfParseToNumber(TaxPercentTextBox.Text) && checker.CheckIfParseToNumber(TipPrecentTextBox.Text))
+            if (checker.CheckIfParseToNumber(TaxPercentTextBox.Text) 
+                && checker.CheckIfParseToNumber(TipPrecentTextBox.Text) 
+                && checker.CheckIfParseToNumber(ServiceFeePercentTextBox.Text))
             {
                 Person person = new Person("Name Here", "Contact Info");
-                NavigationService.Navigate(new AddPersonPage(person, personList, tipPercent, taxPercent, false));
+                NavigationService.Navigate(new AddPersonPage(person, personList, tipPercent, taxPercent, serviceFeePercent,false));
 
                 GenerateReportButton.Visibility = Visibility.Visible;
             }
@@ -80,7 +80,7 @@ namespace TabSplit
                 var instance = editButton.DataContext;
                 if (instance is Person person)
                 {
-                    NavigationService.Navigate(new AddPersonPage(person, personList, tipPercent, taxPercent, true));
+                    NavigationService.Navigate(new AddPersonPage(person, personList, tipPercent, taxPercent, serviceFeePercent, true));
 
                     //personList.Remove(person);
                    // personList.Add(person);
@@ -111,13 +111,13 @@ namespace TabSplit
         {
             foreach (Person person in personList)
             {
-                person.CalculatePrice(tipPercent, taxPercent); 
+                person.CalculatePrice(tipPercent, taxPercent, serviceFeePercent); 
             }
         }
 
         private void GenerateReportButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            GenerateReport generator = new GenerateReport(personList, taxPercent, tipPercent);
+            GenerateReport generator = new GenerateReport(personList, taxPercent, tipPercent, serviceFeePercent);
             string reportString = generator.CreateReport();
             NavigationService.Navigate(new ReportPage(reportString));
         }
@@ -144,7 +144,7 @@ namespace TabSplit
                     ObservableCollection<Person> tempList = new ObservableCollection<Person>();
                     tempList.Add(person);
 
-                    GenerateReport generator = new GenerateReport(tempList, taxPercent, tipPercent);
+                    GenerateReport generator = new GenerateReport(tempList, taxPercent, tipPercent, serviceFeePercent);
                     string reportString = generator.CreateReport();
 
                     PersonInfoWindow personInfoWindow = new PersonInfoWindow(reportString);

@@ -23,6 +23,8 @@
             </Menu>
             <TextBox Name="TaxPercentTextBox" Text="Tax Percent" TextChanged="TaxPercentTextBox_TextChanged"></TextBox>
             <TextBox Name="TipPrecentTextBox" Text="Tip Percent" TextChanged="TipPrecentTextBox_TextChanged"></TextBox>
+            <TextBox Name="ServiceFeePercentTextBox" Text="Service Fee Percent" TextChanged="ServiceFeePercentTextBox_TextChanged"></TextBox>
+            
             <Button Content="Add Person" Background="LightGreen" Click="Button_Click"></Button>
 
             <Grid Margin="10,0,0,0">

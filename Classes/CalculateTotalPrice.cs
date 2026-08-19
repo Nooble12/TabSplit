@@ -4,19 +4,22 @@ namespace TabSplit.Classes
 {
     public class CalculateTotalPrice
     {
-        public float GetTotalPrice(List<Item> inventory, float tipPercent, float taxPercent)
+        public float GetTotalPrice(List<Item> inventory, float tipPercent, float taxPercent, float serviceFeePercent)
         {
             float totalBasePrice = GetTotalBasePrice(inventory);
-            float basePriceWithTip = 0.0f;
-            float taxPrice = 0.0f;
+            float tipCost = 0.0f;
+            float serviceFeeCost = 0.0f;
+            float taxCost = 0.0f;
 
             float tipDecimal = tipPercent / 100;
             float taxDecimal = taxPercent / 100;
+            float serviceFeeDecimal = serviceFeePercent / 100;
 
-            basePriceWithTip = (totalBasePrice * tipDecimal) + totalBasePrice;
-            taxPrice = (totalBasePrice * taxDecimal);
+            tipCost = totalBasePrice * tipDecimal;
+            serviceFeeCost = totalBasePrice * serviceFeeDecimal;
+            taxCost = totalBasePrice * taxDecimal;
 
-            return basePriceWithTip + taxPrice;
+            return tipCost + serviceFeeCost + taxCost + totalBasePrice;
         }
 
         public float GetTotalBasePrice(List<Item> inventory)
