@@ -4,6 +4,8 @@ using System.Windows.Media;
 using TabSplit.Classes;
 using System.Windows;
 using TabSplit.Pages;
+using System.Diagnostics;
+using TabSplit.Windows;
 
 namespace TabSplit
 {
@@ -128,6 +130,25 @@ namespace TabSplit
             {
                 personList.Clear();
                 GenerateReportButton.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void ListBoxItem_MouseDoubleClick(object sender, RoutedEventArgs e)
+        {
+            if (sender is ListBoxItem item)
+            {
+                var instance = item.DataContext;
+
+                if (instance is Person person)
+                {
+                    ObservableCollection<Person> tempList = new ObservableCollection<Person>();
+                    tempList.Add(person);
+
+                    GenerateReport generator = new GenerateReport(tempList, taxPercent, tipPercent);
+                    string reportString = generator.CreateReport();
+
+                    PersonInfoWindow personInfoWindow = new PersonInfoWindow(reportString);
+                }
             }
         }
     }

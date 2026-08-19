@@ -39,6 +39,13 @@
             </Grid>
 
             <ListBox Margin="0, 5, 0, 0" Height="250" Name="ItemListBox" Background="White">
+
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <EventSetter Event="MouseDoubleClick" Handler="ListBoxItem_MouseDoubleClick"></EventSetter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="5" VerticalAlignment="Center">
