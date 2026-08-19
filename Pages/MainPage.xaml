@@ -16,6 +16,11 @@
         </Grid.RowDefinitions>
 
         <StackPanel>
+            <Menu>
+                <MenuItem Header="File">
+                    <MenuItem Name="ClearButton" Header="Clear" Click="ClearButton_Click"></MenuItem>
+                </MenuItem>
+            </Menu>
             <TextBox Name="TaxPercentTextBox" Text="Tax Percent" TextChanged="TaxPercentTextBox_TextChanged"></TextBox>
             <TextBox Name="TipPrecentTextBox" Text="Tip Percent" TextChanged="TipPrecentTextBox_TextChanged"></TextBox>
             <Button Content="Add Person" Background="LightGreen" Click="Button_Click"></Button>
