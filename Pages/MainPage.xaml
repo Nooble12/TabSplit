@@ -65,8 +65,8 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Content="{Binding name}" Foreground="Black" Grid.Column="0" VerticalAlignment="Center" Margin="5"></Label>
-                            <Label Content="{Binding totalBasePrice}" ContentStringFormat="${0}" Foreground="Black" Grid.Column="1" VerticalAlignment="Center" Margin="5"></Label>
-                            <Label Content="{Binding totalPrice}" ContentStringFormat="${0}" Foreground="Black" Grid.Column="2" VerticalAlignment="Center" Margin="5"></Label>
+                            <Label Content="{Binding totalBasePrice}" ContentStringFormat="${0:N2}" Foreground="Black" Grid.Column="1" VerticalAlignment="Center" Margin="5"></Label>
+                            <Label Content="{Binding totalPrice}" ContentStringFormat="${0:N2}" Foreground="Black" Grid.Column="2" VerticalAlignment="Center" Margin="5"></Label>
                             <Button Content="Edit" Foreground="Black" Click="EditButton_Click" Grid.Column="3" Margin="5"></Button>
                             <Button Content="X" Foreground="Red" Click="DeleteButton_Click" Grid.Column="4" Margin="5"></Button>
                         </Grid>
