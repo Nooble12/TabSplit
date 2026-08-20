@@ -151,5 +151,33 @@ namespace TabSplit
                 }
             }
         }
+
+        private void AlphabetSortButton_Click(object sender, RoutedEventArgs e)
+        {
+            var sortedPeople = personList.ToList().OrderBy(person => person.name);
+            RebuildObservableCollection(sortedPeople, personList);
+        }
+
+        private void DescendingPriceButton_Click(object sender, RoutedEventArgs e)
+        {
+            var sortedPeople = personList.ToList().OrderByDescending(person => person.totalPrice);
+            RebuildObservableCollection(sortedPeople, personList);
+        }
+
+        private void AscendingPriceButton_Click(object sender, RoutedEventArgs e)
+        {
+            var sortedPeople = personList.ToList().OrderBy(person => person.totalPrice);
+            RebuildObservableCollection(sortedPeople, personList);
+        }
+
+        private void RebuildObservableCollection(IOrderedEnumerable<Person> sortedList, ObservableCollection<Person> inPersonList)
+        {
+            inPersonList.Clear();
+
+            foreach (Person person in sortedList)
+            {
+                personList.Add(person);
+            }
+        }
     }
 }

@@ -20,6 +20,11 @@
                 <MenuItem Header="File">
                     <MenuItem Name="ClearButton" Header="Clear" Click="ClearButton_Click"></MenuItem>
                 </MenuItem>
+                <MenuItem Name="SortHeader" Header="Sort">
+                    <MenuItem Name="AlphabetSortButton" Header="Alphabetical Order" Click="AlphabetSortButton_Click"></MenuItem>
+                    <MenuItem Name="DescendingPriceButton" Header="Low to High Price" Click="DescendingPriceButton_Click"></MenuItem>
+                    <MenuItem Name="AscendingPriceButton" Header="High to Low Price" Click="AscendingPriceButton_Click"></MenuItem>
+                </MenuItem>
             </Menu>
             <TextBox Name="TaxPercentTextBox" Text="Tax Percent" TextChanged="TaxPercentTextBox_TextChanged"></TextBox>
             <TextBox Name="TipPrecentTextBox" Text="Tip Percent" TextChanged="TipPrecentTextBox_TextChanged"></TextBox>
