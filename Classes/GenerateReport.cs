@@ -57,7 +57,7 @@ namespace TabSplit.Classes
 
                 builder.AppendLine();
                 builder.AppendLine($"Tip: ${individualTipCost:F2}");
-                builder.AppendLine($"Service Fee: ${individualTipCost:F2}");
+                builder.AppendLine($"Service Fee: ${individualServiceFeeCost:F2}");
                 builder.AppendLine($"Tax: ${individualTaxCost:F2}");
                 builder.AppendLine($"Total: ${person.totalPrice:F2} <----- {person.name} pays");
                 builder.AppendLine();
@@ -66,7 +66,7 @@ namespace TabSplit.Classes
             }
 
             builder.AppendLine($"Tip: ${totalTip:F2}");
-            builder.AppendLine($"Service Fee: ${totalTip:F2}");
+            builder.AppendLine($"Service Fee: ${totalServiceFee:F2}");
             builder.AppendLine($"Tax: ${totalTax:F2}");
             builder.AppendLine($"Total: ${totalCost:F2}");
 
