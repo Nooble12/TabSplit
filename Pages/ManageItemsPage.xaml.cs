@@ -31,7 +31,18 @@ namespace TabSplit.Pages
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if (sender is Button button)
+            {
+                var instance = button.DataContext;
+                switch (instance)
+                {
+                    case Item item:
+                        ItemManager.Instance.itemList.Remove(item);
+                       
+                        // Need to also remove the item from each person's inventory
+                        break;
+                }
+            }
         }
     }
 }
