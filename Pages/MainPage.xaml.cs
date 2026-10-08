@@ -14,6 +14,7 @@ namespace TabSplit
     public partial class MainPage : Page
     {
         public ObservableCollection<Person> personList { get; set; } = new ObservableCollection<Person>();
+        public ObservableCollection<Item> itemList { get; set; } = new ObservableCollection<Item>();
         private float tipPercent;
         private float taxPercent;
         private float serviceFeePercent;
@@ -178,6 +179,10 @@ namespace TabSplit
             {
                 personList.Add(person);
             }
+        }
+        private void ManageItemsButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ManageItemsPage());
         }
     }
 }
