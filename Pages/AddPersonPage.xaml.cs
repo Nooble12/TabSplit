@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using TabSplit.Classes;
+using TabSplit.Pages;
 
 namespace TabSplit
 {
@@ -57,11 +58,22 @@ namespace TabSplit
 
         private void AddItemButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            Item item = new Item("Enter Name", 0, 1);
-            itemList.Add(item);
-            person.AddItemToInventory(item);
 
-            ExitButton.Visibility = Visibility.Visible;
+            if (ItemManager.Instance.itemList.Count == 0)
+            {
+                // Allow for item creation
+                Item item = new Item("Enter Name", 5, 1);
+                itemList.Add(item);
+                person.AddItemToInventory(item);
+
+                ExitButton.Visibility = Visibility.Visible;
+            }
+            else 
+            {
+                // Allow for item selection
+                this.NavigationService.Navigate(new SelectItemPage(person, itemList));
+                ExitButton.Visibility = Visibility.Visible;
+            }
         }
 
         private void ExitButton_Click(object sender, System.Windows.RoutedEventArgs e)

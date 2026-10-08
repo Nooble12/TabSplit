@@ -40,6 +40,7 @@
                                 <ColumnDefinition Width="100"/>
                                 <ColumnDefinition Width="100"/>
                                 <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="100"/>
                             </Grid.ColumnDefinitions>
                             <TextBox x:Name="ItemNameTextBox" TextChanged="ItemNameTextBox_TextChanged" Text="{Binding name}" Foreground="Black" Grid.Column="0" VerticalAlignment="Center" Margin="5"></TextBox>
                             <TextBox Name="ItemPriceTextBox" PreviewTextInput="ItemPriceTextBox_PreviewTextInput" Text="{Binding price, Converter = {StaticResource FractionToFloatConverter}}" Foreground="Black" Grid.Column="1" VerticalAlignment="Center" Margin="5"></TextBox>
