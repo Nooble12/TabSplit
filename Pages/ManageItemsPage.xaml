@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TabSplit.Pages"
       mc:Ignorable="d" 
+      xmlns:model="clr-namespace:TabSplit.Classes" 
       d:DesignHeight="450" d:DesignWidth="800" Background="LightBlue"
       Title="ManageItemsPage">
 
@@ -12,7 +13,7 @@
         <StackPanel Margin="10,10,10,53">
 
             <Button Name="AddItemButton" Content="Add Item" Background="LightGreen" Click="AddItemButton_Click"></Button>
-            <ListBox Name="ItemListBox" Background="White" Height="366">
+            <ListBox Name="ItemListBox" Background="White" Height="366" ItemsSource="{Binding Source={x:Static model:ItemManager.Instance}, Path=itemList}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="5" VerticalAlignment="Center">

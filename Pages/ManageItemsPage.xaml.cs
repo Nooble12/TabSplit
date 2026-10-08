@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using TabSplit.Classes;
 
 namespace TabSplit.Pages
 {
@@ -15,7 +16,7 @@ namespace TabSplit.Pages
 
         private void AddItemButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ItemManager.Instance.itemList.Add(new Item("Test Item", 100, 1));
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
