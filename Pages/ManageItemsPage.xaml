@@ -40,7 +40,7 @@
 
                             <TextBox Text="{Binding name}" Foreground="Black" Grid.Column="0" VerticalAlignment="Center" Margin="5"></TextBox>
                             <TextBox Text="{Binding price}" PreviewTextInput="ItemPriceTextBox_PreviewTextInput" Foreground="Black" Grid.Column="1" VerticalAlignment="Center" Margin="5"></TextBox>
-                            <Button Content="X" Foreground="Red" Click="DeleteButton_Click" Grid.Column="4" Margin="5"></Button>
+                            <Button Content="X" Foreground="Red" Click="DeleteButton_Click" Grid.Column="2" Margin="5"></Button>
                         </Grid>
 
                     </DataTemplate>
