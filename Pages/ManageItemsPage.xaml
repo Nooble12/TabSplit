@@ -11,7 +11,18 @@
       Title="ManageItemsPage">
 
     <Grid>
-        <StackPanel Margin="10,10,10,53">
+        <Menu Margin="0,0,0,434">
+            <MenuItem Header="File">
+                <MenuItem Name="ClearButton" Header="Clear" Click="ClearButton_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem Name="SortHeader" Header="Sort">
+                <MenuItem Name="AlphabetAscendingSortButton" Header="Alphabetical Ascending Order" Click="AlphabetAscendingSortButton_Click"></MenuItem>
+                <MenuItem Name="AlphabetDescendingSortButton" Header="Alphabetical Descending Order" Click="AlphabetDescendingSortButton_Click"></MenuItem>
+                <MenuItem Name="AscendingPriceButton" Header="Ascending Price" Click="AscendingPriceButton_Click"></MenuItem>
+                <MenuItem Name="DescendingPriceButton" Header="Descending Price" Click="DescendingPriceButton_Click"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <StackPanel Margin="10,21,10,53">
 
             <Button Name="AddItemButton" Content="Add Item" Background="LightGreen" Click="AddItemButton_Click"></Button>
 

@@ -1,4 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using TabSplit.Classes;
@@ -11,6 +13,9 @@ namespace TabSplit.Pages
     public partial class ManageItemsPage : Page
     {
         private static readonly Regex _inputRegex = new Regex("^[0-9./\b]+$");
+        CollectionSorter sorter = new CollectionSorter();
+        ObservableCollection<Item> itemList = ItemManager.Instance.itemList;
+
         public ManageItemsPage()
         {
             InitializeComponent();
@@ -52,6 +57,30 @@ namespace TabSplit.Pages
             {
                 e.Handled = true;
             }
+        }
+
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void AlphabetAscendingSortButton_Click(object sender, RoutedEventArgs e)
+        {
+            sorter.sortAscending(itemList, item => item.name);
+        }
+
+        private void DescendingPriceButton_Click(object sender, RoutedEventArgs e)
+        {
+            sorter.sortDescending(itemList, item => item.price);
+        }
+
+        private void AscendingPriceButton_Click(object sender, RoutedEventArgs e)
+        {
+            sorter.sortAscending(itemList, item => item.price);
+        }
+
+        private void AlphabetDescendingSortButton_Click(object sender, RoutedEventArgs e)
+        {
+            sorter.sortDescending(itemList, item => item.name);
         }
     }
 }

@@ -14,6 +14,7 @@ namespace TabSplit
     public partial class MainPage : Page
     {
         public ObservableCollection<Person> personList { get; set; } = new ObservableCollection<Person>();
+        CollectionSorter sorter = new CollectionSorter();
         private float tipPercent;
         private float taxPercent;
         private float serviceFeePercent;
@@ -152,33 +153,26 @@ namespace TabSplit
             }
         }
 
-        private void AlphabetSortButton_Click(object sender, RoutedEventArgs e)
+        private void AlphabetAscendingSortButton_Click(object sender, RoutedEventArgs e)
         {
-            var sortedPeople = personList.ToList().OrderBy(person => person.name);
-            RebuildObservableCollection(sortedPeople, personList);
+            sorter.sortAscending(personList, person => person.name);
+        }
+
+        private void AlphabetDescendingSortButton_Click(object sender, RoutedEventArgs e)
+        {
+            sorter.sortDescending(personList, person => person.name);
         }
 
         private void DescendingPriceButton_Click(object sender, RoutedEventArgs e)
         {
-            var sortedPeople = personList.ToList().OrderByDescending(person => person.totalPrice);
-            RebuildObservableCollection(sortedPeople, personList);
+            sorter.sortDescending(personList, person => person.totalPrice);
         }
 
         private void AscendingPriceButton_Click(object sender, RoutedEventArgs e)
         {
-            var sortedPeople = personList.ToList().OrderBy(person => person.totalPrice);
-            RebuildObservableCollection(sortedPeople, personList);
+            sorter.sortAscending(personList, person => person.totalPrice);
         }
 
-        private void RebuildObservableCollection(IOrderedEnumerable<Person> sortedList, ObservableCollection<Person> inPersonList)
-        {
-            inPersonList.Clear();
-
-            foreach (Person person in sortedList)
-            {
-                personList.Add(person);
-            }
-        }
         private void ManageItemsButton_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ManageItemsPage());
