@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Collections.ObjectModel;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using TabSplit.Classes;
@@ -11,14 +12,18 @@ namespace TabSplit.Pages
     public partial class ManageItemsPage : Page
     {
         private static readonly Regex _inputRegex = new Regex("^[0-9./\b]+$");
-        public ManageItemsPage()
+        public ObservableCollection<Item> ItemCatalog { get; set; }
+        public ManageItemsPage(ObservableCollection<Item> inCatalog)
         {
+            ItemCatalog = inCatalog;
+            this.DataContext = this;
+
             InitializeComponent();
         }
 
         private void AddItemButton_Click(object sender, RoutedEventArgs e)
         {
-            ItemManager.Instance.itemList.Add(new Item("Enter Name", 10, 1));
+            ItemCatalog.Add(new Item("Enter Name", 10, 1));
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -34,7 +39,7 @@ namespace TabSplit.Pages
                 switch (instance)
                 {
                     case Item item:
-                        ItemManager.Instance.itemList.Remove(item);
+                        ItemCatalog.Remove(item);
                        
                         // Need to also remove the item from each person's inventory
                         break;

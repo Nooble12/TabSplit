@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using TabSplit.Classes;
@@ -12,10 +13,15 @@ namespace TabSplit.Pages
     {
         private Person person;
         private ObservableCollection<Item> itemList;
-        public SelectItemPage(Person inPerson, ObservableCollection<Item> inItemList)
+        public ObservableCollection<Item> ItemCatalog { get; set; }
+        public SelectItemPage(Person inPerson, ObservableCollection<Item> inItemList, ObservableCollection<Item> inCatalog)
         {
+            ItemCatalog = inCatalog;
             person = inPerson;
             itemList = inItemList;
+
+            this.DataContext = this;
+
             InitializeComponent();
         }
 

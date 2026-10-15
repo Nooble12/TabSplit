@@ -14,6 +14,7 @@ namespace TabSplit
     public partial class MainPage : Page
     {
         public ObservableCollection<Person> personList { get; set; } = new ObservableCollection<Person>();
+        public ObservableCollection<Item> ItemCatalog { get; set; } = new ObservableCollection<Item>();
         private float tipPercent;
         private float taxPercent;
         private float serviceFeePercent;
@@ -67,7 +68,7 @@ namespace TabSplit
                 && checker.CheckIfParseToNumber(ServiceFeePercentTextBox.Text))
             {
                 Person person = new Person("Name Here", "Contact Info");
-                NavigationService.Navigate(new AddPersonPage(person, personList, tipPercent, taxPercent, serviceFeePercent,false));
+                NavigationService.Navigate(new AddPersonPage(person, personList, ItemCatalog, tipPercent, taxPercent, serviceFeePercent,false));
 
                 GenerateReportButton.Visibility = Visibility.Visible;
             }
@@ -80,7 +81,7 @@ namespace TabSplit
                 var instance = editButton.DataContext;
                 if (instance is Person person)
                 {
-                    NavigationService.Navigate(new AddPersonPage(person, personList, tipPercent, taxPercent, serviceFeePercent, true));
+                    NavigationService.Navigate(new AddPersonPage(person, personList, ItemCatalog, tipPercent, taxPercent, serviceFeePercent, true));
 
                     //personList.Remove(person);
                    // personList.Add(person);
@@ -181,7 +182,7 @@ namespace TabSplit
         }
         private void ManageItemsButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ManageItemsPage());
+            NavigationService.Navigate(new ManageItemsPage(ItemCatalog));
         }
     }
 }

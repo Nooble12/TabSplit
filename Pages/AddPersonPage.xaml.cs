@@ -14,6 +14,7 @@ namespace TabSplit
     public partial class AddPersonPage : Page
     {
         private ObservableCollection<Item> itemList { get; set; } = new ObservableCollection<Item>();
+        private ObservableCollection<Item> ItemCatalog { get; set; }
 
         private VerifyInput checker = new VerifyInput();
         private static readonly Regex _inputRegex = new Regex("^[0-9./\b]+$"); // WIP new Regex("^[0-9./\b]+$"); for fractions and decimals
@@ -24,8 +25,16 @@ namespace TabSplit
         private float taxPercent;
         private float serviceFeePercent;
         private bool isEditMode = false;
-        public AddPersonPage(Person inPerson, ObservableCollection<Person> inPersonList, float inTipPercent, float inTaxPercent, float inServiceFeePercent, bool editModeSelect)
+        public AddPersonPage(Person inPerson, 
+            ObservableCollection<Person> inPersonList, 
+            ObservableCollection<Item> inItemCatalog,
+            float inTipPercent, 
+            float inTaxPercent, 
+            float inServiceFeePercent, 
+            bool editModeSelect)
         {
+
+            ItemCatalog = inItemCatalog;
 
             person = inPerson;
             personList = inPersonList;
@@ -59,7 +68,7 @@ namespace TabSplit
         private void AddItemButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
 
-            if (ItemManager.Instance.itemList.Count == 0)
+            if (ItemCatalog.Count == 0)
             {
                 // Allow for item creation
                 Item item = new Item("Enter Name", 5, 1);
@@ -71,7 +80,7 @@ namespace TabSplit
             else 
             {
                 // Allow for item selection
-                this.NavigationService.Navigate(new SelectItemPage(person, itemList));
+                this.NavigationService.Navigate(new SelectItemPage(person, itemList, ItemCatalog));
                 ExitButton.Visibility = Visibility.Visible;
             }
         }

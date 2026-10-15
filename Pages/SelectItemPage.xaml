@@ -23,7 +23,7 @@
                 <Label Content="Item Price" Grid.Column="1" Foreground="White"></Label>
             </Grid>
 
-            <ListBox Name="ItemListBox" Background="White" Height="305" ItemsSource="{Binding Source={x:Static model:ItemManager.Instance}, Path=itemList}">
+            <ListBox Name="ItemListBox" Background="White" Height="305" ItemsSource="{Binding ItemCatalog}">
 
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
