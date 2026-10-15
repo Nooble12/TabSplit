@@ -12,7 +12,7 @@ namespace TabSplit.Classes
 
         }
 
-        public void sortAscending<T, TKey>(ObservableCollection<T> collection, Func<T, TKey> nameSelector)
+        public void sortAscending<T, TKey>(ObservableCollection<T> collection, Func<T, TKey> nameSelector) 
         {
             var sorted = collection.ToList().OrderBy(element => nameSelector(element));
             RebuildObservableCollection(sorted, collection);
