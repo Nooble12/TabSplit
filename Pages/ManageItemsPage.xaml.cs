@@ -13,6 +13,7 @@ namespace TabSplit.Pages
     {
         private static readonly Regex _inputRegex = new Regex("^[0-9./\b]+$");
         public ObservableCollection<Item> ItemCatalog { get; set; }
+        CollectionSorter sorter = new CollectionSorter();
         public ManageItemsPage(ObservableCollection<Item> inCatalog)
         {
             ItemCatalog = inCatalog;
@@ -57,6 +58,30 @@ namespace TabSplit.Pages
             {
                 e.Handled = true;
             }
+        }
+
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void AlphabetAscendingSortButton_Click(object sender, RoutedEventArgs e)
+        {
+            sorter.sortAscending(ItemCatalog, item => item.name);
+        }
+
+        private void DescendingPriceButton_Click(object sender, RoutedEventArgs e)
+        {
+            sorter.sortDescending(ItemCatalog, item => item.price);
+        }
+
+        private void AscendingPriceButton_Click(object sender, RoutedEventArgs e)
+        {
+            sorter.sortAscending(ItemCatalog, item => item.price);
+        }
+
+        private void AlphabetDescendingSortButton_Click(object sender, RoutedEventArgs e)
+        {
+            sorter.sortDescending(ItemCatalog, item => item.name);
         }
     }
 }
