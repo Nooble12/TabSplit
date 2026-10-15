@@ -101,10 +101,10 @@ namespace TabSplit.Classes
             return true;
         }
 
-        public void CalculatePrice(float tipPercent, float taxPercent, float serviceFeePercent)
+        public void CalculatePrice(Fees fees)
         {
             CalculateTotalPrice price = new CalculateTotalPrice();
-            totalPrice = price.GetTotalPrice(inventory, tipPercent, taxPercent, serviceFeePercent);
+            totalPrice = price.GetTotalPrice(inventory, fees.tipPercent, fees.taxPercent, fees.serviceFeePercent);
             totalBasePrice = price.GetTotalBasePrice(inventory);
         }
 

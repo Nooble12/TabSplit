@@ -16,21 +16,18 @@ namespace TabSplit
         private ObservableCollection<Item> itemList { get; set; } = new ObservableCollection<Item>();
         private ObservableCollection<Item> ItemCatalog { get; set; }
 
+        private Fees fees;
+
         private VerifyInput checker = new VerifyInput();
         private static readonly Regex _inputRegex = new Regex("^[0-9./\b]+$"); // WIP new Regex("^[0-9./\b]+$"); for fractions and decimals
 
         private ObservableCollection<Person> personList;
         private Person person;
-        private float tipPercent;
-        private float taxPercent;
-        private float serviceFeePercent;
         private bool isEditMode = false;
         public AddPersonPage(Person inPerson, 
             ObservableCollection<Person> inPersonList, 
             ObservableCollection<Item> inItemCatalog,
-            float inTipPercent, 
-            float inTaxPercent, 
-            float inServiceFeePercent, 
+            Fees inFees,
             bool editModeSelect)
         {
 
@@ -39,9 +36,7 @@ namespace TabSplit
             person = inPerson;
             personList = inPersonList;
 
-            tipPercent = inTipPercent;
-            taxPercent = inTaxPercent;
-            serviceFeePercent = inServiceFeePercent;
+            fees = inFees;
 
             isEditMode = editModeSelect;
 
@@ -89,7 +84,7 @@ namespace TabSplit
         {
             if (person.VerifyInventory())
             {
-                person.CalculatePrice(tipPercent, taxPercent, serviceFeePercent);
+                person.CalculatePrice(fees);
 
                 if (isEditMode == false)
                 {

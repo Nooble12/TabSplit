@@ -9,12 +9,12 @@ namespace TabSplit.Classes
         private float taxPerent;
         private float tipPerecnt;
         private float serviceFeePercent;
-        public GenerateReport(ObservableCollection<Person> inList, float inTaxPercent, float inTipPercent, float serviceFeePercent)
+        public GenerateReport(ObservableCollection<Person> inList, Fees inFees)
         {
             personList = inList;
-            taxPerent = inTaxPercent;
-            tipPerecnt = inTipPercent;
-            this.serviceFeePercent = serviceFeePercent;
+            taxPerent = inFees.taxPercent;
+            tipPerecnt = inFees.tipPercent;
+            serviceFeePercent = inFees.serviceFeePercent;
         }
 
         public string CreateReport()

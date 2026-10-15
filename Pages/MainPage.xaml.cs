@@ -15,10 +15,9 @@ namespace TabSplit
     {
         public ObservableCollection<Person> personList { get; set; } = new ObservableCollection<Person>();
         public ObservableCollection<Item> ItemCatalog { get; set; } = new ObservableCollection<Item>();
+
+        public Fees fees = new Fees();
         CollectionSorter sorter = new CollectionSorter();
-        private float tipPercent;
-        private float taxPercent;
-        private float serviceFeePercent;
 
         public MainPage()
         {
@@ -29,18 +28,18 @@ namespace TabSplit
 
         private void TipPrecentTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            tipPercent = HandleTextInput(TipPrecentTextBox);
+            fees.tipPercent = HandleTextInput(TipPrecentTextBox);
             UpdateAllPersons();
         }
 
         private void TaxPercentTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            taxPercent = HandleTextInput(TaxPercentTextBox);
+            fees.taxPercent = HandleTextInput(TaxPercentTextBox);
             UpdateAllPersons();
         }
         private void ServiceFeePercentTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            serviceFeePercent = HandleTextInput(ServiceFeePercentTextBox);
+            fees.serviceFeePercent = HandleTextInput(ServiceFeePercentTextBox);
             UpdateAllPersons();
         }
 
@@ -69,7 +68,7 @@ namespace TabSplit
                 && checker.CheckIfParseToNumber(ServiceFeePercentTextBox.Text))
             {
                 Person person = new Person("Name Here", "Contact Info");
-                NavigationService.Navigate(new AddPersonPage(person, personList, ItemCatalog, tipPercent, taxPercent, serviceFeePercent,false));
+                NavigationService.Navigate(new AddPersonPage(person, personList, ItemCatalog, fees,false));
 
                 GenerateReportButton.Visibility = Visibility.Visible;
             }
@@ -82,7 +81,7 @@ namespace TabSplit
                 var instance = editButton.DataContext;
                 if (instance is Person person)
                 {
-                    NavigationService.Navigate(new AddPersonPage(person, personList, ItemCatalog, tipPercent, taxPercent, serviceFeePercent, true));
+                    NavigationService.Navigate(new AddPersonPage(person, personList, ItemCatalog, fees, true));
 
                     //personList.Remove(person);
                    // personList.Add(person);
@@ -113,13 +112,13 @@ namespace TabSplit
         {
             foreach (Person person in personList)
             {
-                person.CalculatePrice(tipPercent, taxPercent, serviceFeePercent); 
+                person.CalculatePrice(fees); 
             }
         }
 
         private void GenerateReportButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            GenerateReport generator = new GenerateReport(personList, taxPercent, tipPercent, serviceFeePercent);
+            GenerateReport generator = new GenerateReport(personList, fees);
             string reportString = generator.CreateReport();
             NavigationService.Navigate(new ReportPage(reportString));
         }
@@ -146,7 +145,7 @@ namespace TabSplit
                     ObservableCollection<Person> tempList = new ObservableCollection<Person>();
                     tempList.Add(person);
 
-                    GenerateReport generator = new GenerateReport(tempList, taxPercent, tipPercent, serviceFeePercent);
+                    GenerateReport generator = new GenerateReport(tempList, fees);
                     string reportString = generator.CreateReport();
 
                     PersonInfoWindow personInfoWindow = new PersonInfoWindow(reportString);
