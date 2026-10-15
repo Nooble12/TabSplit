@@ -15,6 +15,7 @@ namespace TabSplit
     {
         public ObservableCollection<Person> personList { get; set; } = new ObservableCollection<Person>();
         public ObservableCollection<Item> ItemCatalog { get; set; } = new ObservableCollection<Item>();
+        CollectionSorter sorter = new CollectionSorter();
         private float tipPercent;
         private float taxPercent;
         private float serviceFeePercent;
