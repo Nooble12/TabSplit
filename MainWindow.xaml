@@ -8,13 +8,13 @@
         xmlns:converters = "clr-namespace:TabSplit.Classes"
         
         mc:Ignorable="d"
-        Title="Tab Split" Height="450" Width="800">
+        Title="Tab Split" Height="680" Width="1200">
 
         <Window.Resources>
-            <converters:FractionToFloatConverter x:Key = "FractionToFloatConverter"/>
-        </Window.Resources>
+        <converters:FractionToFloatConverter x:Key = "FractionToFloatConverter"/>
+    </Window.Resources>
 
-    <Grid>
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Frame Name="MainFrame" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" NavigationUIVisibility="Hidden"></Frame>
     </Grid>
 </Window>

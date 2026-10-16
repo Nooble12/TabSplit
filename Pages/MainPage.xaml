@@ -5,49 +5,32 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TabSplit"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Background="Gray"
+      d:DesignHeight="680" d:DesignWidth="1200"
+      Background="{DynamicResource BackgroundBrush}"
       Title="MainPage">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
 
-        <StackPanel>
-            <Menu>
-                <MenuItem Header="File">
-                    <MenuItem Name="ClearButton" Header="Clear" Click="ClearButton_Click"></MenuItem>
-                </MenuItem>
-                <MenuItem Name="SortHeader" Header="Sort">
-                    <MenuItem Name="AlphabetAscendingSortButton" Header="Alphabetical Ascending Order" Click="AlphabetAscendingSortButton_Click"></MenuItem>
-                    <MenuItem Name="AlphabetDescendingSortButton" Header="Alphabetical Descending Order" Click="AlphabetDescendingSortButton_Click"></MenuItem>
-                    <MenuItem Name="AscendingPriceButton" Header="Ascending Price" Click="AscendingPriceButton_Click"></MenuItem>
-                    <MenuItem Name="DescendingPriceButton" Header="Descending Price" Click="DescendingPriceButton_Click"></MenuItem>
-                </MenuItem>
-            </Menu>
-            <TextBox Name="TaxPercentTextBox" Text="Tax Percent" TextChanged="TaxPercentTextBox_TextChanged"></TextBox>
-            <TextBox Name="TipPrecentTextBox" Text="Tip Percent" TextChanged="TipPrecentTextBox_TextChanged"></TextBox>
-            <TextBox Name="ServiceFeePercentTextBox" Text="Service Fee Percent" TextChanged="ServiceFeePercentTextBox_TextChanged"></TextBox>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"></ColumnDefinition>
+            <ColumnDefinition Width="780"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
 
-            <Button Name="ManageItemsButton" Content="Manage Items" Background="LightGreen" Click="ManageItemsButton_Click"></Button>
-            <Button Content="Add Person" Background="LightGreen" Click="Button_Click"></Button>
+        <StackPanel Grid.Column="1">
 
             <Grid Margin="10,0,0,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"></ColumnDefinition>
-                    <ColumnDefinition Width="150"></ColumnDefinition>
-                    <ColumnDefinition Width="150"></ColumnDefinition>
+                    <ColumnDefinition Width="180"></ColumnDefinition>
+                    <ColumnDefinition Width="180"></ColumnDefinition>
+                    <ColumnDefinition Width="180"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Label Content="Name" Grid.Column="0" Foreground="White"></Label>
-                <Label Content="Base Price" Grid.Column="1" Foreground="White"></Label>
-                <Label Content="Total Price" Grid.Column="2" Foreground="White"></Label>
-
+                <Label FontSize="20" Content="Name" Grid.Column="0" Foreground="White"></Label>
+                <Label FontSize="20" Content="Base Price" Grid.Column="1" Foreground="White"></Label>
+                <Label FontSize="20" Content="Total Price" Grid.Column="2" Foreground="White"></Label>
             </Grid>
 
-            <ListBox Margin="0, 5, 0, 0" Height="250" Name="ItemListBox" Background="White">
+            <ListBox Margin="0, 5, 0, 0" Height="580" Name="ItemListBox" Background="{DynamicResource BackgroundBrush}">
 
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
@@ -59,25 +42,114 @@
                     <DataTemplate>
                         <Grid Margin="5" VerticalAlignment="Center">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="150"/>
-                                <ColumnDefinition Width="150"/>
-                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width="180"/>
                                 <ColumnDefinition Width="100"/>
                                 <ColumnDefinition Width="100"/>
                             </Grid.ColumnDefinitions>
 
-                            <Label Content="{Binding name}" Foreground="Black" Grid.Column="0" VerticalAlignment="Center" Margin="5"></Label>
-                            <Label Content="{Binding totalBasePrice}" ContentStringFormat="${0:N2}" Foreground="Black" Grid.Column="1" VerticalAlignment="Center" Margin="5"></Label>
-                            <Label Content="{Binding totalPrice}" ContentStringFormat="${0:N2}" Foreground="Black" Grid.Column="2" VerticalAlignment="Center" Margin="5"></Label>
-                            <Button Content="Edit" Foreground="Black" Click="EditButton_Click" Grid.Column="3" Margin="5"></Button>
-                            <Button Content="X" Foreground="Red" Click="DeleteButton_Click" Grid.Column="4" Margin="5"></Button>
+                            <Label Content="{Binding name}" BorderBrush="{DynamicResource ForegroundBrush}" Background="{DynamicResource BackgroundBrush}" Foreground="{DynamicResource ForegroundBrush}" Grid.Column="0" VerticalAlignment="Center" Margin="5" FontSize="20"></Label>
+                            <Label Content="{Binding totalBasePrice}" Background="{DynamicResource BackgroundBrush}" BorderBrush="{DynamicResource ForegroundBrush}" Foreground="{DynamicResource ForegroundBrush}" ContentStringFormat="${0:N2}" Grid.Column="1" FontSize="20" VerticalAlignment="Center" Margin="5"></Label>
+                            <Label Content="{Binding totalPrice}" Background="{DynamicResource BackgroundBrush}" BorderBrush="{DynamicResource ForegroundBrush}" Foreground="{DynamicResource ForegroundBrush}" ContentStringFormat="${0:N2}" Grid.Column="2" FontSize="20" VerticalAlignment="Center" Margin="5"></Label>
+                            <Button FontSize="20" Content="Edit" Background="{DynamicResource BackgroundBrush}" BorderBrush="{DynamicResource ForegroundBrush}" Foreground="{DynamicResource ForegroundBrush}" Click="EditButton_Click" Grid.Column="3" Margin="5"></Button>
+                            <Button FontSize="20" Content="X" Background="{DynamicResource BackgroundBrush}" BorderBrush="{DynamicResource ForegroundBrush}" Foreground="Red" Click="DeleteButton_Click" Grid.Column="4" Margin="5"></Button>
                         </Grid>
 
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+        </StackPanel>
 
-            <Button Name="GenerateReportButton" Content="Generate Report" Background="LightGreen" Click="GenerateReportButton_Click"></Button>
+        <StackPanel>
+
+            <Menu Background="{DynamicResource BackgroundBrush}" Foreground="{DynamicResource ForegroundBrush}">
+                <MenuItem Header="File" FontSize="20">
+                    <MenuItem Name="ClearButton" Header="Clear" Click="ClearButton_Click" Background="{DynamicResource BackgroundBrush}" Foreground="{DynamicResource ForegroundBrush}"></MenuItem>
+                </MenuItem>
+
+                <MenuItem FontSize="20" Name="SortHeader" Header="Sort" Background="{DynamicResource BackgroundBrush}" Foreground="{DynamicResource ForegroundBrush}">
+                    <MenuItem 
+                            Name="AlphabetAscendingSortButton" 
+                            Header="Alphabetical Ascending Order" 
+                            Click="AlphabetAscendingSortButton_Click"
+                            Background="{DynamicResource BackgroundBrush}"
+                            Foreground="{DynamicResource ForegroundBrush}"
+                            ></MenuItem>
+                    <MenuItem 
+                            Name="AlphabetDescendingSortButton" 
+                            Header="Alphabetical Descending Order" 
+                            Click="AlphabetDescendingSortButton_Click"
+                            Background="{DynamicResource BackgroundBrush}"
+                            Foreground="{DynamicResource ForegroundBrush}"
+                        ></MenuItem>
+                    <MenuItem 
+                            Name="AscendingPriceButton" 
+                            Header="Ascending Price" 
+                            Click="AscendingPriceButton_Click"
+                            Background="{DynamicResource BackgroundBrush}"
+                            Foreground="{DynamicResource ForegroundBrush}"
+                        ></MenuItem>
+                    <MenuItem 
+                            Name="DescendingPriceButton" 
+                            Header="Descending Price" 
+                            Click="DescendingPriceButton_Click"
+                            Background="{DynamicResource BackgroundBrush}"
+                            Foreground="{DynamicResource ForegroundBrush}"
+                        ></MenuItem>
+                </MenuItem>
+            </Menu>
+            
+
+            <Grid Width="auto" Height="auto" Margin="0,5,0,0">
+                <Label Content="Tax %" FontSize="30" Foreground="{DynamicResource ForegroundBrush}"/>
+                <TextBox
+                    FontSize="30"
+                    Name="TaxPercentTextBox" 
+                    Text="0" 
+                    TextChanged="TaxPercentTextBox_TextChanged" 
+                    Background="{DynamicResource TextBoxBackgroundBrush}" 
+                    Foreground="{DynamicResource ForegroundBrush}" 
+                    Margin="10,60,10,10"
+                    />
+            </Grid>
+
+            <Grid Width="auto" Height="120" Margin="0,5,0,0">
+                <Label Content="Tip %" FontSize="30" Foreground="{DynamicResource ForegroundBrush}"/>
+                <TextBox 
+                    FontSize="30" 
+                    Name="TipPrecentTextBox" 
+                    Text="0" 
+                    TextChanged="TipPrecentTextBox_TextChanged" 
+                    Background="{DynamicResource TextBoxBackgroundBrush}" 
+                    Foreground="{DynamicResource ForegroundBrush}"
+                    Margin="10,60,10,10"
+                    ></TextBox>
+            </Grid>
+            <Grid Width="auto" Height="120" Margin="0,5,0,0">
+                <Label Content="Service Fee %" FontSize="30" Foreground="{DynamicResource ForegroundBrush}"/>
+                <TextBox 
+                    FontSize="30"
+                    Name="ServiceFeePercentTextBox" 
+                    Text="0" 
+                    TextChanged="ServiceFeePercentTextBox_TextChanged" 
+                    Background="{DynamicResource TextBoxBackgroundBrush}" 
+                    Foreground="{DynamicResource ForegroundBrush}"
+                    Margin="10,60,10,10"
+                    ></TextBox>
+            </Grid>
+
+            <Grid Height="60">
+                <Button Name="ManageItemsButton" Content="Item Catalog" Background="LightGreen" Click="ManageItemsButton_Click" Margin="10,10,10,10"></Button>
+            </Grid>
+
+            <Grid Height="60">
+                <Button Content="Add Person" Background="LightGreen" Click="Button_Click" Margin="10"></Button>
+            </Grid>
+
+            <Grid Height="60">
+                <Button Name="GenerateReportButton" Content="Generate Report" Background="LightGreen" Click="GenerateReportButton_Click" Margin="10"></Button>
+            </Grid>
         </StackPanel>
     </Grid>
 </Page>

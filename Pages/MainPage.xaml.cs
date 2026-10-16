@@ -49,7 +49,7 @@ namespace TabSplit
 
             if (checker.CheckIfParseToNumber(inTextBox.Text))
             {
-                inTextBox.Background = Brushes.White;
+                inTextBox.SetResourceReference(TextBox.BackgroundProperty, "TextBoxBackgroundBrush");
                 return checker.number;
             }
             else
