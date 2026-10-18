@@ -52,8 +52,8 @@
                             <Label Content="{Binding name}" BorderBrush="{DynamicResource ForegroundBrush}" Background="{DynamicResource BackgroundBrush}" Foreground="{DynamicResource ForegroundBrush}" Grid.Column="0" VerticalAlignment="Center" Margin="5" FontSize="20"></Label>
                             <Label Content="{Binding totalBasePrice}" Background="{DynamicResource BackgroundBrush}" BorderBrush="{DynamicResource ForegroundBrush}" Foreground="{DynamicResource ForegroundBrush}" ContentStringFormat="${0:N2}" Grid.Column="1" FontSize="20" VerticalAlignment="Center" Margin="5"></Label>
                             <Label Content="{Binding totalPrice}" Background="{DynamicResource BackgroundBrush}" BorderBrush="{DynamicResource ForegroundBrush}" Foreground="{DynamicResource ForegroundBrush}" ContentStringFormat="${0:N2}" Grid.Column="2" FontSize="20" VerticalAlignment="Center" Margin="5"></Label>
-                            <Button FontSize="20" Content="Edit" Background="{DynamicResource BackgroundBrush}" BorderBrush="{DynamicResource ForegroundBrush}" Foreground="{DynamicResource ForegroundBrush}" Click="EditButton_Click" Grid.Column="3" Margin="5"></Button>
-                            <Button FontSize="20" Content="X" Background="{DynamicResource BackgroundBrush}" BorderBrush="{DynamicResource ForegroundBrush}" Foreground="Red" Click="DeleteButton_Click" Grid.Column="4" Margin="5"></Button>
+                            <Button FontSize="20" Content="Edit" Style="{DynamicResource RoundCorner}" Background="{DynamicResource BackgroundBrush}" Foreground="{DynamicResource ForegroundBrush}" Click="EditButton_Click" Grid.Column="3" Margin="5"></Button>
+                            <Button FontSize="20" Content="X" Style="{DynamicResource RoundCorner}" Background="{DynamicResource BackgroundBrush}" Foreground="Red" Click="DeleteButton_Click" Grid.Column="4" Margin="5"></Button>
                         </Grid>
 
                     </DataTemplate>
