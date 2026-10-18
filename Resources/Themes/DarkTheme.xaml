@@ -25,7 +25,7 @@
     <SolidColorBrush x:Key="Menu.Disabled.Foreground" Color="#FF707070"/>
     <SolidColorBrush x:Key="MenuItem.Selected.Background" Color="#3D26A0DA"/>
     <SolidColorBrush x:Key="MenuItem.Selected.Border" Color="#FF26A0DA"/>
-    <SolidColorBrush x:Key="MenuItem.Highlight.Background" Color="#002E63"/>
+    <SolidColorBrush x:Key="MenuItem.Highlight.Background" Color="#0078D4"/>
     <SolidColorBrush x:Key="MenuItem.Highlight.Border" Color="#FF26A0DA"/>
     <SolidColorBrush x:Key="MenuItem.Highlight.Disabled.Background" Color="#0A000000"/>
     <SolidColorBrush x:Key="MenuItem.Highlight.Disabled.Border" Color="#21000000"/>
@@ -309,7 +309,6 @@
     <!--- MENU ITEM -->
     <SolidColorBrush x:Key="MenuItemForeground" Color="White"></SolidColorBrush>
     <SolidColorBrush x:Key="MenuItemBackground" Color="#343434"></SolidColorBrush>
-    <SolidColorBrush x:Key="MenuItemBackgroundHighlight" Color="#343434"></SolidColorBrush>
     <Style x:Key="MenuItemStyle" TargetType="{x:Type MenuItem}">
         <Setter Property="Foreground" Value="{DynamicResource MenuItemForeground}"/>
         <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
@@ -361,7 +360,7 @@
                             <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                            <Setter Property="Background" TargetName="border" Value="#0078D4"/>
                             <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
