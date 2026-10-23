@@ -7,58 +7,69 @@
       mc:Ignorable="d" 
       xmlns:converters = "clr-namespace:TabSplit.Classes"
       xmlns:model="clr-namespace:TabSplit.Classes" 
-      d:DesignHeight="450" d:DesignWidth="800" Background="LightBlue"
+      d:DesignHeight="680" d:DesignWidth="1200" Background="{DynamicResource BackgroundBrush}"
       Title="ManageItemsPage">
 
     <Grid Background="Transparent">
-        <StackPanel Margin="10,10,10,10">
+        <StackPanel>
 
-            <Menu Margin="0,0,0,0" VerticalAlignment="Top">
-                <MenuItem Header="File">
-                    <MenuItem Name="ClearButton" Header="Clear" Click="ClearButton_Click"></MenuItem>
+            <Menu Margin="0,0,0,0" VerticalAlignment="Top" Style="{DynamicResource MenuStyle}">
+                <MenuItem Header="File" Style="{DynamicResource MenuItemStyle}" FontSize="20">
+                    <MenuItem Name="ClearButton" Header="Clear" Click="ClearButton_Click" Style="{DynamicResource MenuItemStyle}"></MenuItem>
                 </MenuItem>
-                <MenuItem Name="SortHeader" Header="Sort">
-                    <MenuItem Name="AlphabetAscendingSortButton" Header="Alphabetical Ascending Order" Click="AlphabetAscendingSortButton_Click"></MenuItem>
-                    <MenuItem Name="AlphabetDescendingSortButton" Header="Alphabetical Descending Order" Click="AlphabetDescendingSortButton_Click"></MenuItem>
-                    <MenuItem Name="AscendingPriceButton" Header="Ascending Price" Click="AscendingPriceButton_Click"></MenuItem>
-                    <MenuItem Name="DescendingPriceButton" Header="Descending Price" Click="DescendingPriceButton_Click"></MenuItem>
+                <MenuItem Name="SortHeader" Header="Sort" Style="{DynamicResource MenuItemStyle}" FontSize="20">
+                    <MenuItem Name="AlphabetAscendingSortButton" Header="Alphabetical Ascending Order" Click="AlphabetAscendingSortButton_Click" Style="{DynamicResource MenuItemStyle}"></MenuItem>
+                    <MenuItem Name="AlphabetDescendingSortButton" Header="Alphabetical Descending Order" Click="AlphabetDescendingSortButton_Click" Style="{DynamicResource MenuItemStyle}"></MenuItem>
+                    <MenuItem Name="AscendingPriceButton" Header="Ascending Price" Click="AscendingPriceButton_Click" Style="{DynamicResource MenuItemStyle}"></MenuItem>
+                    <MenuItem Name="DescendingPriceButton" Header="Descending Price" Click="DescendingPriceButton_Click" Style="{DynamicResource MenuItemStyle}"></MenuItem>
                 </MenuItem>
             </Menu>
 
-            <Button Name="AddItemButton" Content="Add Item" Background="LightGreen" Click="AddItemButton_Click"></Button>
-
-            <Grid Margin="0, 5, 0, 0" Background="Gray">
+            <Grid Margin="0, 5, 0, 0" Background="{DynamicResource BackgroundBrush}">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="180"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Content="Item Name" Grid.Column="0" Foreground="White" Margin="10, 0, 0, 0"></Label>
-                <Label Content="Item Price" Grid.Column="1" Foreground="White"></Label>
+                <Label Content="Item Name" FontSize="20" Grid.Column="0" Style="{DynamicResource LabelStyle}" Margin="10, 0, 0, 0"></Label>
+                <Label Content="Item Price" FontSize="20" Grid.Column="1" Style="{DynamicResource LabelStyle}" Margin="10,0,0,0"></Label>
             </Grid>
 
-            <ListBox Name="ItemListBox" Background="White" Height="281" ItemsSource="{Binding ItemCatalog}">
+            <ListBox Name="ItemListBox" Background="{DynamicResource BackgroundBrush}" Height="480" ItemsSource="{Binding ItemCatalog}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid Margin="5" VerticalAlignment="Center">
+                        <Grid Margin="5">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="150"/>
-                                <ColumnDefinition Width="150"/>
-                                <ColumnDefinition Width="150"/>
-                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="300"/>
+                                <ColumnDefinition Width="300"/>
                                 <ColumnDefinition Width="100"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBox Text="{Binding name}" Foreground="Black" Grid.Column="0" VerticalAlignment="Center" Margin="5"></TextBox>
-                            <TextBox Text="{Binding price}" PreviewTextInput="ItemPriceTextBox_PreviewTextInput" Foreground="Black" Grid.Column="1" VerticalAlignment="Center" Margin="5"></TextBox>
-                            <Button Content="X" Foreground="Red" Click="DeleteButton_Click" Grid.Column="2" Margin="5"></Button>
+                            <TextBox Text="{Binding name}" Style="{DynamicResource RoundTextBox}" BorderBrush="{DynamicResource ForegroundBrush}" Background="{DynamicResource BackgroundBrush}" Foreground="{DynamicResource ForegroundBrush}" FontSize="20" Grid.Column="0" VerticalAlignment="Center" Margin="5"></TextBox>
+                            <TextBox Text="{Binding price}" Style="{DynamicResource RoundTextBox}" BorderBrush="{DynamicResource ForegroundBrush}" Background="{DynamicResource BackgroundBrush}" Foreground="{DynamicResource ForegroundBrush}" FontSize="20" PreviewTextInput="ItemPriceTextBox_PreviewTextInput" Grid.Column="1" VerticalAlignment="Center" Margin="5"></TextBox>
+                            <Button Content="X" Style="{DynamicResource RoundCorner}" BorderBrush="{DynamicResource ForegroundBrush}" Background="{DynamicResource BackgroundBrush}" Foreground="Red" Click="DeleteButton_Click" Grid.Column="2" FontSize="20" Margin="5"></Button>
                         </Grid>
 
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <Button Margin="0,5,0,0" Name="BackButton" Background="LightGreen" Content="Back" HorizontalAlignment="Left" Width="780" Height="34" Click="BackButton_Click"/>
+
+            <Button 
+                Name="AddItemButton"
+                Style="{DynamicResource RoundCorner}" Height="40"
+                Content="Add Item"
+                Background="LightGreen"
+                Margin="0,5,0,0"
+                Click="AddItemButton_Click"
+            ></Button>
+
+            <Button Margin="0,5,0,0" 
+                    Name="BackButton" 
+                    Background="LightGreen" 
+                    Content="Back"
+                    Style="{DynamicResource RoundCorner}"
+                    Click="BackButton_Click" Height="38"/>
         </StackPanel>
     </Grid>
 </Page>
