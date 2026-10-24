@@ -62,7 +62,12 @@ namespace TabSplit.Pages
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult result = MessageBox.Show("Do you want to clear?", "Clear Elements", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
+            if (result == MessageBoxResult.Yes)
+            {
+                ItemCatalog.Clear();
+            }
         }
         private void AlphabetAscendingSortButton_Click(object sender, RoutedEventArgs e)
         {
