@@ -47,7 +47,15 @@ namespace TabSplit.Classes
                 
                 foreach (Item item in person.inventory)
                 {
-                    builder.AppendLine($"{item.name}: ${item.price} ({item.quantity:F2}) = ${(item.price * item.quantity):F2}");
+                    if (item.quantity == 1) 
+                    {
+                        builder.AppendLine($"{item.name}: ${(item.price * item.quantity):F2}");
+                    }
+                    else 
+                    {
+                        builder.AppendLine($"{item.name}: ${item.price} ({item.quantity:F2}) = ${(item.price * item.quantity):F2}");
+                    }
+
                     individualTaxCost += (item.price * item.quantity) * (taxPerent / 100);
                     individualTipCost += (item.price * item.quantity) * (tipPerecnt / 100);
                     individualServiceFeeCost += (item.price * item.quantity) * (serviceFeePercent / 100);
@@ -60,9 +68,22 @@ namespace TabSplit.Classes
                 subTotal += individualSubTotal;
 
                 builder.AppendLine();
-                builder.AppendLine($"Tip: ${individualTipCost:F2}");
-                builder.AppendLine($"Service Fee: ${individualServiceFeeCost:F2}");
-                builder.AppendLine($"Tax: ${individualTaxCost:F2}");
+
+                if (individualTipCost > 0)
+                {
+                    builder.AppendLine($"Tip: ${individualTipCost:F2}");
+                }
+                
+                if (individualServiceFeeCost > 0)
+                {
+                    builder.AppendLine($"Service Fee: ${individualServiceFeeCost:F2}");
+                }
+
+                if (individualTaxCost > 0)
+                {
+                    builder.AppendLine($"Tax: ${individualTaxCost:F2}");
+                }
+
                 builder.AppendLine($"Sub Total: ${individualSubTotal:F2}");
                 builder.AppendLine($"Total: ${person.totalPrice:F2} <----- {person.name} pays");
                 builder.AppendLine();
@@ -70,9 +91,21 @@ namespace TabSplit.Classes
                 builder.AppendLine("<-------------------------------------->\n");
             }
 
-            builder.AppendLine($"Tip: ${totalTip:F2}");
-            builder.AppendLine($"Service Fee: ${totalServiceFee:F2}");
-            builder.AppendLine($"Tax: ${totalTax:F2}");
+            if (totalTip > 0)
+            {
+                builder.AppendLine($"Tip: ${totalTip:F2}");
+            }
+            
+            if (totalServiceFee > 0)
+            {
+                builder.AppendLine($"Service Fee: ${totalServiceFee:F2}");
+            }
+
+            if (totalTax > 0)
+            {
+                builder.AppendLine($"Tax: ${totalTax:F2}");
+            }
+
             builder.AppendLine($"Sub Total: ${subTotal:F2}");
             builder.AppendLine($"Total: ${totalCost:F2}");
 
