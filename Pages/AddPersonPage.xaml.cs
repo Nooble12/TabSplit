@@ -95,7 +95,7 @@ namespace TabSplit
             }
             else
             {
-                ErrorTextBox.Text = "Error, Invalid field(s)";
+               
             }
         }
 
@@ -136,7 +136,7 @@ namespace TabSplit
            {
                if (checker.CheckInputStringLength(nameTextBox.Text))
                 {
-                    nameTextBox.Background = Brushes.White;
+                    nameTextBox.SetResourceReference(TextBox.BackgroundProperty, "TextBoxBackgroundBrush");
                 }
                 else
                 {

@@ -6,8 +6,8 @@
       xmlns:local="clr-namespace:TabSplit"
       xmlns:converters = "clr-namespace:TabSplit.Classes"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Background="Gray"
+     d:DesignHeight="680" d:DesignWidth="1200"
+      Background="{DynamicResource BackgroundBrush}"
       Title="Add Person">
 
     <Page.Resources>
@@ -16,36 +16,35 @@
 
     <Grid>
         <StackPanel>
-            <TextBox Name="PersonNameTextBox" Text="{Binding name}" Foreground="White" Background="Gray" FontSize="20" TextChanged="PersonNameTextBox_TextChanged"></TextBox>
-            <TextBox Name="ContactTextBox" Text="{Binding contactInfo}" Foreground="White" FontSize="20" Background="Gray" TextChanged="ContactTextBox_TextChanged"></TextBox>
+            <TextBox Name="PersonNameTextBox" Text="{Binding name}" Style="{DynamicResource RoundTextBox}" FontSize="20" TextChanged="PersonNameTextBox_TextChanged" Height="50" VerticalContentAlignment="Center" Margin="0,5,0,0"></TextBox>
+            <TextBox Name="ContactTextBox" Text="{Binding contactInfo}" Style="{DynamicResource RoundTextBox}" FontSize="20" TextChanged="ContactTextBox_TextChanged" Height="50" VerticalContentAlignment="Center" Margin="0,5,0,0"></TextBox>
 
             <Grid Margin="10, 5, 0, 0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="300"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Content="Item Name" Grid.Column="0" Foreground="White"></Label>
-                <Label Content="Item Price" Grid.Column="1" Foreground="White"></Label>
-                <Label Content="Item Quantity" Grid.Column="3" Foreground="White"></Label>
+                <Label Content="Item Name" Grid.Column="0" FontSize="20" Style="{DynamicResource LabelStyle}"></Label>
+                <Label Content="Item Price" Grid.Column="1" FontSize="20" Style="{DynamicResource LabelStyle}" ></Label>
+                <Label Content="Item Quantity" Grid.Column="3" FontSize="20" Style="{DynamicResource LabelStyle}"></Label>
             </Grid>
 
-            <ListBox Margin="0" Height="250" Name="ItemListBox" Background="White">
+            <ListBox Margin="0" Height="376" Name="ItemListBox" Background="{DynamicResource BackgroundBrush}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="5" VerticalAlignment="Center">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100"/>
-                                <ColumnDefinition Width="100"/>
-                                <ColumnDefinition Width="100"/>
-                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="300"/>
+                                <ColumnDefinition Width="300"/>
+                                <ColumnDefinition Width="300"/>
                                 <ColumnDefinition Width="100"/>
                             </Grid.ColumnDefinitions>
-                            <TextBox x:Name="ItemNameTextBox" TextChanged="ItemNameTextBox_TextChanged" Text="{Binding name}" Foreground="Black" Grid.Column="0" VerticalAlignment="Center" Margin="5"></TextBox>
-                            <TextBox Name="ItemPriceTextBox" PreviewTextInput="ItemPriceTextBox_PreviewTextInput" Text="{Binding price, Converter = {StaticResource FractionToFloatConverter}}" Foreground="Black" Grid.Column="1" VerticalAlignment="Center" Margin="5"></TextBox>
-                            <TextBox Name="ItemQuantityTextBox" PreviewTextInput="ItemQuantityTextBox_PreviewTextInput" Text="{Binding quantity, Converter = {StaticResource FractionToFloatConverter}}" Foreground="Black" Grid.Column="2" VerticalAlignment="Center" Margin="5"></TextBox>
-                            <Button Name="DeleteButton" Content="X" Click="DeleteButton_Click" Foreground="Red" Grid.Column="3"></Button>
+                            <TextBox x:Name="ItemNameTextBox" TextChanged="ItemNameTextBox_TextChanged" Text="{Binding name}" Style="{DynamicResource RoundTextBox}" Margin="5" FontSize="20"></TextBox>
+                            <TextBox Name="ItemPriceTextBox" PreviewTextInput="ItemPriceTextBox_PreviewTextInput" Text="{Binding price, Converter = {StaticResource FractionToFloatConverter}}" Style="{DynamicResource RoundTextBox}" Grid.Column="1" VerticalAlignment="Center" Margin="5" FontSize="20"></TextBox>
+                            <TextBox Name="ItemQuantityTextBox" PreviewTextInput="ItemQuantityTextBox_PreviewTextInput" Text="{Binding quantity, Converter = {StaticResource FractionToFloatConverter}}" Style="{DynamicResource RoundTextBox}" Grid.Column="2" VerticalAlignment="Center" Margin="5" FontSize="20"></TextBox>
+                            <Button Name="DeleteButton" Content="X" Click="DeleteButton_Click" Foreground="Red" FontSize="20" Style="{DynamicResource RoundCorner}" Background="Transparent" Grid.Column="3"></Button>
                         </Grid>
 
                        
@@ -53,10 +52,8 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <Button Margin="0,5,0,0" Name="AddItemButton" Content="Add Item" Background="LightGreen" Click="AddItemButton_Click"></Button>
-            <Button Margin="0,5,0,0" Name="ExitButton" Content="Finish" Background="PaleVioletRed" Click="ExitButton_Click"></Button>
-
-            <TextBox Name="ErrorTextBox" Height="60" Foreground="Red"></TextBox>
+            <Button Margin="0,5,0,0" Name="AddItemButton" Content="Add Item" Background="LightGreen" Style="{DynamicResource RoundCorner}" Click="AddItemButton_Click" Height="50"></Button>
+            <Button Margin="0,5,0,0" Name="ExitButton" Content="Finish" Background="PaleVioletRed" Style="{DynamicResource RoundCorner}" Click="ExitButton_Click" Height="50"></Button>
         </StackPanel>
     </Grid>
 </Page>
