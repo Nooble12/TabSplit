@@ -23,6 +23,7 @@ namespace TabSplit.Classes
             float totalTax = 0.0f;
             float totalTip = 0.0f;
             float totalServiceFee = 0.0f;
+            float subTotal = 0.0f;
 
             StringBuilder builder = new StringBuilder("Summary \n");
             builder.AppendLine("Tax, Service Fee, and Tip are calculated separately on the item base value.\n");
@@ -37,6 +38,7 @@ namespace TabSplit.Classes
                 float individualTaxCost = 0.0f;
                 float individualTipCost = 0.0f;
                 float individualServiceFeeCost = 0.0f;
+                float individualSubTotal = 0.0f;
 
                 totalCost += person.totalPrice;
 
@@ -45,20 +47,23 @@ namespace TabSplit.Classes
                 
                 foreach (Item item in person.inventory)
                 {
-                    builder.AppendLine($"{item.name}: ${item.price} ({item.quantity}) = ${(item.price * item.quantity):F2}");
+                    builder.AppendLine($"{item.name}: ${item.price} ({item.quantity:F2}) = ${(item.price * item.quantity):F2}");
                     individualTaxCost += (item.price * item.quantity) * (taxPerent / 100);
                     individualTipCost += (item.price * item.quantity) * (tipPerecnt / 100);
                     individualServiceFeeCost += (item.price * item.quantity) * (serviceFeePercent / 100);
+                    individualSubTotal += (item.price * item.quantity);
                 }
 
                 totalTax += individualTaxCost;
                 totalTip += individualTipCost;
                 totalServiceFee += individualServiceFeeCost;
+                subTotal += individualSubTotal;
 
                 builder.AppendLine();
                 builder.AppendLine($"Tip: ${individualTipCost:F2}");
                 builder.AppendLine($"Service Fee: ${individualServiceFeeCost:F2}");
                 builder.AppendLine($"Tax: ${individualTaxCost:F2}");
+                builder.AppendLine($"Sub Total: ${individualSubTotal:F2}");
                 builder.AppendLine($"Total: ${person.totalPrice:F2} <----- {person.name} pays");
                 builder.AppendLine();
 
@@ -68,6 +73,7 @@ namespace TabSplit.Classes
             builder.AppendLine($"Tip: ${totalTip:F2}");
             builder.AppendLine($"Service Fee: ${totalServiceFee:F2}");
             builder.AppendLine($"Tax: ${totalTax:F2}");
+            builder.AppendLine($"Sub Total: ${subTotal:F2}");
             builder.AppendLine($"Total: ${totalCost:F2}");
 
             builder.AppendLine("\nReport Generated With: " + "https://github.com/Nooble12/TabSplit");
